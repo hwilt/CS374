@@ -1,6 +1,9 @@
 ./README.md d41d8cd98f00b204e9800998ecf8427e
 ./MD5_Part1.sh e629430a5f1aa472958d3e146b27516e
-./MD5_Part2.sh 677da3bdd8fbd16d4b8917a9fe0f6f89
+./MD5_Part2.sh b4003afe974fb85e86cbac2e6a335d2b
 ./random.txt 641309b583bfee6de1fb96693df17991
 ./md5dict.txt d41d8cd98f00b204e9800998ecf8427e
-./md5sums.txt 7a64b1ab7cc9de91386ce67f34d69131
+./random1.txt 85264f01f725bf6a3c3da186aeef041e
+./random2.txt 386726c991e7b9a82c91624843c447df
+./random3.txt 89638d55df8b7c817fcb870cd9a4f7b8
+./random4.txt 8e54bf08df85d7244c363aa222732e11
