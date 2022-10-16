@@ -1,13 +1,32 @@
 import re
 
 def regexmatch(pattern, file):
-    # You can append your match spans to this list
+    file = open(file, "r")
+    data = file.read()
+    file.close()
+    
     result = []
-    
-    # TODO: your code here
-    
+
+    for match in re.finditer(pattern, data):
+        result.append(match.span())
+        offset = match.end()
+
     return result
 
+
+def main():
+    fileName = "somefile.txt"
+    pattern = r";"
+    result = regexmatch(pattern, fileName)
+    print(result)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+'''
 
 file = open("somefile.txt")
 data = file.read()
@@ -31,3 +50,5 @@ offset = offset + nextIndex # keep track of the absolute position of the most re
 # This will search the rest of the string for the next instance
 # ... and return None if no match is found
 match = re.search(r";", data[offset:])
+
+'''

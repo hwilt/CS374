@@ -1,5 +1,26 @@
 public class somefile{
+
+    public sttic void printMethod(int a, int b){
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("Hello World");
+        System.out.println("800 500 1000");
+        System.out.println("800-555-1212");
+        System.out.println("1-800-555-5555");
+    }
+
     public static void main(String[] args){
+
+        phoneNumbers = {"800-555-1212", "1-800-555-5555", "1 800 555 1515"};
+
         System.out.println("hello world");
     }
 }
+
+
+Example Line
+DEPOSIT 8000
+DEPOSIT 5000
+deposit 10000
