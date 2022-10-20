@@ -1,0 +1,18 @@
+
+0s,1s
+odd,odd
+odd,even
+even,odd
+even,even
+
+bothOdd:    if 1 -> odd,even
+            if 0 -> even,odd
+
+bothEven:   if 1 -> even,odd
+            if 0 -> odd,even
+
+odd,even:   if 1 -> odd,odd
+            if 0 -> even,even
+
+even,odd:   if 1 -> even,even
+            if 0 -> odd,odd
