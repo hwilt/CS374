@@ -5,10 +5,17 @@
 using namespace std;
 
 int main(){
-    int output = library::addFive(-5);
+    int output = library::addFive(1);
     printf("Output: %d\n", output);
     //cout << library::addFive(output) << endl;
 
+    int base = 2;
+    int power = 3;
+    printf("Power function: %d^%d\n", base, power);
+    int ans = library::pow(base, power);
+    printf("Output: %d\n", ans);
+
+    /*
     int X[] = {1,2,3};
     int Y[] = {4,5,6};
 
@@ -20,6 +27,6 @@ int main(){
         cout << array[i] << "\t";
     }
     cout << endl;
-
+    */
     return 0;
 }

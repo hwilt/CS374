@@ -5,11 +5,19 @@ int library::addFive(int number){
     return number + 5;
 }
 
+int library::pow(int base, int power){
+    int retVal;
+    for(int i = 0; i < power; i++){
+        retVal = retVal * base;
+    }
+    return retVal;
+}
+
 int* library::combineIntArrays(int* X, int m, int* Y, int n){
     //int m = sizeof(a1);
     //int n = sizeof(a2);
 
-    static int retVal[m+n];
+    int retVal[m+n];
 
     for (int i = 0; i < (m + n); i++){
         if(i < m){
