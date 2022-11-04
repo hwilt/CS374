@@ -1,13 +1,13 @@
 
 
 main: mallocfree
-	g++ -c -o main.o main.cpp
-	g++ -o main main.o mallocfree.c
+	gcc -o main main.c -ldl
 
 mallocfree:
-	gcc mallocfree.c -ldl
+	gcc -shared -fpic -o mallocfree.so mallocfree.c -ldl
 
 clean:
 	rm -f main
 	rm -f *.o
 	rm -f *.a
+	rm -f *.so
