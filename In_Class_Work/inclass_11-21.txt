@@ -1,0 +1,14 @@
+example: 
+a * 2 + 1
+
+[ 0, a 9,  ]
+
+for each token:
+    lookup table[topstate, token]
+    if shift:
+        push token and state you find in table
+        move to next character
+
+    if reduce:
+        pop 2 * length of the production, push the nonterminal, and push table[topstate, nonterminal]
+        repeat the reduce
