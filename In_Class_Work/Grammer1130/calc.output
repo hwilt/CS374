@@ -1,0 +1,219 @@
+Grammar
+
+    0 $accept: calc $end
+
+    1 calc: /* empty */
+    2     | expr T_NEWLINE
+
+    3 expr: term T_PLUS expr
+    4     | term T_MINUS expr
+    5     | term
+
+    6 term: factor T_MULTIPLY term
+    7     | factor T_DIVIDE term
+    8     | factor
+
+    9 factor: T_INT
+   10       | T_LEFT expr T_RIGHT
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+T_INT (258) 9
+T_PLUS (259) 3
+T_MINUS (260) 4
+T_MULTIPLY (261) 6
+T_DIVIDE (262) 7
+T_LEFT (263) 10
+T_RIGHT (264) 10
+T_NEWLINE (265) 2
+
+
+Nonterminals, with rules where they appear
+
+$accept (11)
+    on left: 0
+calc (12)
+    on left: 1 2, on right: 0
+expr (13)
+    on left: 3 4 5, on right: 2 3 4 10
+term (14)
+    on left: 6 7 8, on right: 3 4 5 6 7
+factor (15)
+    on left: 9 10, on right: 6 7 8
+
+
+state 0
+
+    0 $accept: . calc $end
+
+    T_INT   shift, and go to state 1
+    T_LEFT  shift, and go to state 2
+
+    $default  reduce using rule 1 (calc)
+
+    calc    go to state 3
+    expr    go to state 4
+    term    go to state 5
+    factor  go to state 6
+
+
+state 1
+
+    9 factor: T_INT .
+
+    $default  reduce using rule 9 (factor)
+
+
+state 2
+
+   10 factor: T_LEFT . expr T_RIGHT
+
+    T_INT   shift, and go to state 1
+    T_LEFT  shift, and go to state 2
+
+    expr    go to state 7
+    term    go to state 5
+    factor  go to state 6
+
+
+state 3
+
+    0 $accept: calc . $end
+
+    $end  shift, and go to state 8
+
+
+state 4
+
+    2 calc: expr . T_NEWLINE
+
+    T_NEWLINE  shift, and go to state 9
+
+
+state 5
+
+    3 expr: term . T_PLUS expr
+    4     | term . T_MINUS expr
+    5     | term .
+
+    T_PLUS   shift, and go to state 10
+    T_MINUS  shift, and go to state 11
+
+    $default  reduce using rule 5 (expr)
+
+
+state 6
+
+    6 term: factor . T_MULTIPLY term
+    7     | factor . T_DIVIDE term
+    8     | factor .
+
+    T_MULTIPLY  shift, and go to state 12
+    T_DIVIDE    shift, and go to state 13
+
+    $default  reduce using rule 8 (term)
+
+
+state 7
+
+   10 factor: T_LEFT expr . T_RIGHT
+
+    T_RIGHT  shift, and go to state 14
+
+
+state 8
+
+    0 $accept: calc $end .
+
+    $default  accept
+
+
+state 9
+
+    2 calc: expr T_NEWLINE .
+
+    $default  reduce using rule 2 (calc)
+
+
+state 10
+
+    3 expr: term T_PLUS . expr
+
+    T_INT   shift, and go to state 1
+    T_LEFT  shift, and go to state 2
+
+    expr    go to state 15
+    term    go to state 5
+    factor  go to state 6
+
+
+state 11
+
+    4 expr: term T_MINUS . expr
+
+    T_INT   shift, and go to state 1
+    T_LEFT  shift, and go to state 2
+
+    expr    go to state 16
+    term    go to state 5
+    factor  go to state 6
+
+
+state 12
+
+    6 term: factor T_MULTIPLY . term
+
+    T_INT   shift, and go to state 1
+    T_LEFT  shift, and go to state 2
+
+    term    go to state 17
+    factor  go to state 6
+
+
+state 13
+
+    7 term: factor T_DIVIDE . term
+
+    T_INT   shift, and go to state 1
+    T_LEFT  shift, and go to state 2
+
+    term    go to state 18
+    factor  go to state 6
+
+
+state 14
+
+   10 factor: T_LEFT expr T_RIGHT .
+
+    $default  reduce using rule 10 (factor)
+
+
+state 15
+
+    3 expr: term T_PLUS expr .
+
+    $default  reduce using rule 3 (expr)
+
+
+state 16
+
+    4 expr: term T_MINUS expr .
+
+    $default  reduce using rule 4 (expr)
+
+
+state 17
+
+    6 term: factor T_MULTIPLY term .
+
+    $default  reduce using rule 6 (term)
+
+
+state 18
+
+    7 term: factor T_DIVIDE term .
+
+    $default  reduce using rule 7 (term)
