@@ -2,7 +2,7 @@
 2. No questions.
 3. Solo.
 4. Yacc/Lex stuff but most is written by me.
-5. Hours spent: 4
-6. I enjoyed writting the parser.
+5. Hours spent: 10
+6. I did not enjoy any part of the assignment sadly.
 7. Algorithm Implementation: 100%, Code Quality: 100%, Writeup and submission: 100%
 8. No concerns or comments.
