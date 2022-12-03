@@ -2,6 +2,7 @@
  
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
  
 extern int yylex();
 extern int yyparse();
@@ -69,7 +70,7 @@ struct symbol* getsymbol(char* name) {
 %token<ival> T_INT
 %token<fval> T_FLOAT
 %token<sval> T_ID
-%token T_PLUS T_MINUS T_MULTIPLY T_DIVIDE T_LEFT T_RIGHT T_NEWLINE
+%token T_PLUS T_MINUS T_MULTIPLY T_DIVIDE T_LEFT T_RIGHT T_NEWLINE T_ASSIGN
  
 
 %type<ival> expression
@@ -81,7 +82,7 @@ struct symbol* getsymbol(char* name) {
  
 calc:                                                       { printf("EOF\n"); exit(0); }
     | mixed_expression T_NEWLINE                            { printf("Result = %f\n", $1); exit(0);}
-    | 
+    | id_expression T_NEWLINE                               { printf("Result = %s\n", getsymbol($1)->name); exit(0);}
 	| expression T_NEWLINE                                  { printf("Result = %d\n", $1); exit(0); } // no return value needed, no type
  
 mixed_expression: T_FLOAT                 		            { $$ = $1; }
@@ -106,7 +107,8 @@ expression: T_INT				                            { $$ = $1; }
 	  | expression T_MULTIPLY expression	                { $$ = $1 * $3; }
 	  | T_LEFT expression T_RIGHT		                    { $$ = $2; }
 
-id_expression: T_ID				                            { $$ = $1; }
+id_expression: T_ID T_ASSIGN expression                     {struct symbol* sym = putsymbol($1, 1); sym->value.ival = $3;}
+
 
 %%
  
