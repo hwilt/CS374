@@ -17,7 +17,7 @@ def readInput():
     the file string
   """
   f = open("inputfile.txt", "r")
-  return f.read()
+  return f.read().lower()
 
 
 def checkUserInput(user):
@@ -86,6 +86,8 @@ def find_first(keyword, file):
   first = re.search(r"\b"+keyword, file)
   position = first.span()
   print(f"The first occurence of {keyword} is {position}")
+  sentence = file[position[0]:position[1]+file.find("\n", position[1])-3]
+  print(f"This the sentence around the first instance;\n{sentence}")
 
 
 def find_all(keyword, file):
@@ -101,7 +103,11 @@ def find_all(keyword, file):
   Return: 
   None
   """
-  pass
+  find_all = re.findall(r"\b"+keyword, file)
+  for match in find_all:
+    position = match.span()
+    print(f"Word match ({keyword}) found at {position},")
+    
 
 
 def count(keyword, file):
